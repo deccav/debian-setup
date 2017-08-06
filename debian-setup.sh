@@ -24,7 +24,7 @@ apt-get -y install gdebi-core
 # Download Google Chrome and install
 if [[ $choices == *"1"* ]]; then
 	cd /tmp &&
-	wget https://dl.google.com/linux/direct/google-chrome-stable_curr‌​ent_amd64.deb &&
+	wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb &&
 	gdebi google-chrome-stable_current_amd64.deb
 fi
 
