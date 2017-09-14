@@ -14,9 +14,13 @@ echo "Confirm that you would like to proceed (y/n): "
 read docontinue
 if [ $docontinue = "y" ];
 then
-elif [$docontinue = "n"];
+	echo ""
+	echo "Continuing"
+else
+if [$docontinue = "n"];
 then
 	exit
+fi
 fi
 
 echo ""
@@ -36,9 +40,12 @@ if [[ $choices == *"1"* ]]; then
 	if [$docontinue = "y"];
 	then
 	gdebi --non-interactive google-chrome-stable_current_amd64.deb
-	elif [$docontinue = "n"];
+	else
+if [$docontinue = "n"];
 	then
 	gdebi google-chrome-stable_current_amd64.deb
+fi
+fi
 fi
 
 # Add Spotify keys, repository, then download and install
@@ -56,9 +63,12 @@ if [[ $choices == *"3"* ]]; then
 	if [$docontinue = "y"];
 	then
 	gdebi --non-interactive gitkraken-amd64.deb
-	elif [$docontinue = "n"];
+	else
+if [$docontinue = "n"];
 	then
 	gdebi gitkraken-amd64.deb
+fi
+fi
 fi
 
 # Download and install Steam
@@ -68,9 +78,12 @@ if [[ $choices == *"4"* ]]; then
 	if [$docontinue = "y"];
 	then
 	gdebi --non-interactive steam.deb
-	elif [$docontinue = "n"];
+	else
+if [$docontinue = "n"];
 	then
 	gdebi steam.deb
+fi
+fi
 fi
 
 # Download and install VLC
