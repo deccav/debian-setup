@@ -17,7 +17,7 @@ then
 	echo ""
 	echo "Continuing"
 else
-if [$docontinue = "n"];
+if [ $docontinue = "n" ];
 then
 	exit
 fi
@@ -37,11 +37,11 @@ apt-get -y install gdebi-core
 if [[ $choices == *"1"* ]]; then
 	cd /tmp &&
 	wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb &&
-	if [$docontinue = "y"];
+	if [ $autocontinue = "y" ];
 	then
 	gdebi --non-interactive google-chrome-stable_current_amd64.deb
 	else
-if [$docontinue = "n"];
+if [ $autocontinue = "n" ];
 	then
 	gdebi google-chrome-stable_current_amd64.deb
 fi
@@ -60,11 +60,11 @@ fi
 if [[ $choices == *"3"* ]]; then
 	cd /tmp &&
 	wget https://release.gitkraken.com/linux/gitkraken-amd64.deb &&
-	if [$docontinue = "y"];
+	if [ $autocontinue = "y" ];
 	then
 	gdebi --non-interactive gitkraken-amd64.deb
 	else
-if [$docontinue = "n"];
+if [ $autocontinue = "n" ];
 	then
 	gdebi gitkraken-amd64.deb
 fi
@@ -75,11 +75,11 @@ fi
 if [[ $choices == *"4"* ]]; then
 	cd /tmp &&
 	wget http://media.steampowered.com/client/installer/steam.deb &&
-	if [$docontinue = "y"];
+	if [ $autocontinue = "y" ];
 	then
 	gdebi --non-interactive steam.deb
 	else
-if [$docontinue = "n"];
+if [ $autocontinue = "n" ];
 	then
 	gdebi steam.deb
 fi
