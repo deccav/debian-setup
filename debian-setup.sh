@@ -3,17 +3,29 @@
 
 echo "Choices: Chrome (1), Spotify (2), Gitkraken (3), Steam (4), VLC (5), GIMP (6)"
 echo ""
-echo "Please press the corresponding number for every\nprogram you'd like to install, then press enter."
+echo "Please press the corresponding number for every program you'd like to install, then press enter."
 
 echo ""
 echo "Choices: "
-read choices
+read -r choices
 
 echo ""
 echo "Confirm that you would like to proceed (y/n): "
-read continue
-if [ $continue = "y" ];
+read -r docontinue
+if [ "$docontinue" = "y" ];
 then
+	echo ""
+	echo "Continuing"
+else
+if [ "$docontinue" = "n" ];
+then
+	exit
+fi
+fi
+
+echo ""
+echo "Would you like all installations to complete automatically? (y/n): "
+read -r autocontinue
 
 # Update sources
 apt-get update
@@ -25,7 +37,15 @@ apt-get -y install gdebi-core
 if [[ $choices == *"1"* ]]; then
 	cd /tmp &&
 	wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb &&
+	if [ "$autocontinue" = "y" ];
+	then
+	gdebi --non-interactive google-chrome-stable_current_amd64.deb
+	else
+if [ "$autocontinue" = "n" ];
+	then
 	gdebi google-chrome-stable_current_amd64.deb
+fi
+fi
 fi
 
 # Add Spotify keys, repository, then download and install
@@ -40,14 +60,30 @@ fi
 if [[ $choices == *"3"* ]]; then
 	cd /tmp &&
 	wget https://release.gitkraken.com/linux/gitkraken-amd64.deb &&
+	if [ "$autocontinue" = "y" ];
+	then
+	gdebi --non-interactive gitkraken-amd64.deb
+	else
+if [ "$autocontinue" = "n" ];
+	then
 	gdebi gitkraken-amd64.deb
+fi
+fi
 fi
 
 # Download and install Steam
 if [[ $choices == *"4"* ]]; then
 	cd /tmp &&
 	wget http://media.steampowered.com/client/installer/steam.deb &&
+	if [ "$autocontinue" = "y" ];
+	then
+	gdebi --non-interactive steam.deb
+	else
+if [ "$autocontinue" = "n" ];
+	then
 	gdebi steam.deb
+fi
+fi
 fi
 
 # Download and install VLC
@@ -58,7 +94,6 @@ fi
 # Download and install GIMP
 if [[ $choices == *"6"* ]]; then
 	apt-get -y install gimp
-fi
 fi
 
 echo ""
