@@ -95,7 +95,6 @@ fi
 if [[ $choices == *"6"* ]]; then
 	apt-get -y install gimp
 fi
-fi
 
 echo ""
 echo "Script complete - exiting"
