@@ -1,7 +1,7 @@
 #!/bin/bash
 # A script designed to make post-install setup easier for Debian based distributions.
 
-echo "Choices: Chrome (1), Spotify (2), Gitkraken (3), Steam (4), VLC (5), GIMP (6)"
+echo "Choices: Chrome (1), Spotify (2), Gitkraken (3), Steam (4), VLC (5), GIMP (6), Atom (7)"
 echo ""
 echo "Please press the corresponding number for every program you'd like to install, then press enter."
 
@@ -12,13 +12,11 @@ read -r choices
 echo ""
 echo "Confirm that you would like to proceed (y/n): "
 read -r docontinue
-if [ "$docontinue" = "y" ];
-then
+if [ "$docontinue" = "y" ]; then
 	echo ""
 	echo "Continuing"
 else
-if [ "$docontinue" = "n" ];
-then
+if [ "$docontinue" = "n" ]; then
 	exit
 fi
 fi
@@ -37,12 +35,10 @@ apt-get -y install gdebi-core
 if [[ $choices == *"1"* ]]; then
 	cd /tmp &&
 	wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb &&
-	if [ "$autocontinue" = "y" ];
-	then
+	if [ "$autocontinue" = "y" ]; then
 	gdebi --non-interactive google-chrome-stable_current_amd64.deb
 	else
-if [ "$autocontinue" = "n" ];
-	then
+if [ "$autocontinue" = "n" ]; then
 	gdebi google-chrome-stable_current_amd64.deb
 fi
 fi
@@ -60,12 +56,10 @@ fi
 if [[ $choices == *"3"* ]]; then
 	cd /tmp &&
 	wget https://release.gitkraken.com/linux/gitkraken-amd64.deb &&
-	if [ "$autocontinue" = "y" ];
-	then
+	if [ "$autocontinue" = "y" ]; then
 	gdebi --non-interactive gitkraken-amd64.deb
 	else
-if [ "$autocontinue" = "n" ];
-	then
+if [ "$autocontinue" = "n" ]; then
 	gdebi gitkraken-amd64.deb
 fi
 fi
@@ -75,13 +69,11 @@ fi
 if [[ $choices == *"4"* ]]; then
 	cd /tmp &&
 	wget http://media.steampowered.com/client/installer/steam.deb &&
-	if [ "$autocontinue" = "y" ];
-	then
-	gdebi --non-interactive steam.deb
+	if [ "$autocontinue" = "y" ]; then
+		gdebi --non-interactive steam.deb
 	else
-if [ "$autocontinue" = "n" ];
-	then
-	gdebi steam.deb
+	if [ "$autocontinue" = "n" ]; then
+		gdebi steam.deb
 fi
 fi
 fi
@@ -94,6 +86,19 @@ fi
 # Download and install GIMP
 if [[ $choices == *"6"* ]]; then
 	apt-get -y install gimp
+fi
+
+# Download and install Atom
+if [[ $choices == *"7"* ]]; then
+	cd /tmp &&
+	wget -O atom-amd64.deb https://atom.io/download/deb &&
+	if [ "$autocontinue" = "y" ]; then
+		gdebi --non-interactive atom-amd64.deb
+	else
+	if [ "$autocontinue" = "n" ]; then
+		gdebi atom-amd64.deb
+fi
+fi
 fi
 
 echo ""
